@@ -30,10 +30,6 @@ ONEPICE-KG 是一个面向《海贼王》领域数据的知识图谱项目。
 * 智能问答：基于**REfO**实现一个对于《海贼王》中人物的知识库问答系统(KBQA)。
 * 可视化图片：通过D3对实体关系图片进行可视化，并整合了人物知识图谱中的信息，进行展示。
 
-
-
-
-
-各个部分的具体内容和使用方法，可以参见 `docs` 文件夹下的[项目文档](http://openkg1.oss-cn-beijing.aliyuncs.com/5b604d47-8b86-4969-a53d-8af6af7c418f/--release.pdf)
+各个部分的具体内容和使用方法，可以参见 `docs` 文件夹下的[项目文档](docs/report.pdf))
 
 实体关系**可视化页面**可以参见项目的[GitHub Pages](https://mrbulb.github.io/ONEPIECE-KG/)

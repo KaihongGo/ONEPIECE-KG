@@ -1,44 +1,47 @@
-## 《海贼王》知识图谱构建-项目报告
+# 《海贼王》知识图谱构建-项目报告
 
 [《海贼王》知识图谱构建-项目报告](#海贼王知识图谱构建-项目报告)
 
-* [1. 项目背景](#1-项目背景)
-* [2. 项目内容](#2-项目内容)
-* [3. 数据采集](#3-数据采集)
-  * [3.1. 数据来源](#31-数据来源)
-  * [3.2. 人物知识图谱构建](#32-人物知识图谱构建)
-    * [3.2.1. 抽取通用知识图谱中已有的目标域知识](#321-抽取通用知识图谱中已有的目标域知识)
-    * [3.2.2. 抽取网页中半结构化的知识](#322-抽取网页中半结构化的知识)
-  * [3.3. 关系抽取数据集构建](#33-关系抽取数据集构建)
-    * [3.1. 数据集统计信息](#31-数据集统计信息)
-  * [3.4. 实体关系知识图谱构建](#34-实体关系知识图谱构建)
-* [4. 知识存储](#4-知识存储)
-  * [4.1. 基于RDF 三元组数据库：Apache Jena](#41-基于rdf-三元组数据库apache-jena)
-    * [4.1.3 SPARQL查询示例](#413-sparql查询示例)
-  * [4.2. 基于原生图数据库：Neo4j](#42-基于原生图数据库neo4j)
-    * [4.2.1. Neo4j简介](#421-neo4j简介)
-    * [4.2.3. Cypher查询示例](#423-cypher查询示例)
-* [5. 知识抽取](#5-知识抽取)
-  * [5.1. 数据转换&amp;标注统计](#51-数据转换标注统计)
-  * [5.2. 训练](#52-训练)
-  * [5.3. 训练结果](#53-训练结果)
-  * [6.1. 图计算](#61-图计算)
-    * [6.1.1. 人物网络分析](#611-人物网络分析)
-    * [6.1.2. 关键节点](#612-关键节点)
-    * [6.1.3. 节点中心度](#613-节点中心度)
-    * [6.1.4. 社区发现](#614-社区发现)
-    * [6.1.5. PageRank](#615-pagerank)
-  * [6.2. 知识推理](#62-知识推理)
-* [7. 知识应用](#7-知识应用)
-  * [7.1. 智能问答](#71-智能问答)
-    * [7.1.1. 支持的问题类型](#711-支持的问题类型)
-    * [7.1.2. 查询示例](#712-查询示例)
-  * [7.2. 知识图谱可视化](#72-知识图谱可视化)
-* [参考资料](#参考资料)
+- [《海贼王》知识图谱构建-项目报告](#海贼王知识图谱构建-项目报告)
+  - [1. 项目背景](#1-项目背景)
+  - [2. 项目内容](#2-项目内容)
+  - [3. 数据采集](#3-数据采集)
+    - [3.1. 数据来源](#31-数据来源)
+    - [3.2. 人物知识图谱构建](#32-人物知识图谱构建)
+      - [3.2.1. 抽取通用知识图谱中已有的目标域知识](#321-抽取通用知识图谱中已有的目标域知识)
+      - [3.2.2. 抽取网页中半结构化的知识](#322-抽取网页中半结构化的知识)
+    - [3.3. 关系抽取数据集构建](#33-关系抽取数据集构建)
+      - [3.3.1. 数据集统计信息](#331-数据集统计信息)
+    - [3.4. 实体关系知识图谱构建](#34-实体关系知识图谱构建)
+  - [4. 知识存储](#4-知识存储)
+    - [4.1. 基于RDF 三元组数据库：Apache Jena](#41-基于rdf-三元组数据库apache-jena)
+      - [4.1.1 Jena 简介[^10]](#411-jena-简介10)
+      - [4.1.2. 项目实践](#412-项目实践)
+      - [4.1.3 SPARQL查询示例](#413-sparql查询示例)
+    - [4.2. 基于原生图数据库：Neo4j](#42-基于原生图数据库neo4j)
+      - [4.2.1. Neo4j简介](#421-neo4j简介)
+      - [4.2.2. 项目实践](#422-项目实践)
+      - [4.2.3. Cypher查询示例](#423-cypher查询示例)
+  - [5. 知识抽取](#5-知识抽取)
+    - [5.1. 数据转换&标注统计](#51-数据转换标注统计)
+    - [5.2. 训练](#52-训练)
+    - [5.3. 训练结果](#53-训练结果)
+  - [6. 知识计算](#6-知识计算)
+    - [6.1. 图计算](#61-图计算)
+      - [6.1.1. 人物网络分析](#611-人物网络分析)
+      - [6.1.2. 关键节点](#612-关键节点)
+      - [6.1.3. 节点中心度](#613-节点中心度)
+      - [6.1.4. 社区发现](#614-社区发现)
+      - [6.1.5. PageRank](#615-pagerank)
+    - [6.2. 知识推理](#62-知识推理)
+  - [7. 知识应用](#7-知识应用)
+    - [7.1. 智能问答](#71-智能问答)
+      - [7.1.1. 支持的问题类型](#711-支持的问题类型)
+      - [7.1.2. 查询示例](#712-查询示例)
+    - [7.2. 知识图谱可视化](#72-知识图谱可视化)
+  - [参考资料](#参考资料)
 
-
-
-### 1. 项目背景
+## 1. 项目背景
 
 《海贼王》(英文名ONE PIECE) 是由日本漫画家尾田荣一郎创作的热血少年漫画，因为其宏大的世界观、丰富的人物设定、精彩的故事情节、草蛇灰线的伏笔，受到世界各地的读者欢迎，截止2019年11月7日，全球销量突破4亿6000万本[^1]，并被吉尼斯世界纪录官方认证为“世界上发行量最高的单一作者创作的系列漫画”[^2]。
 
@@ -46,9 +49,7 @@
 
 本次任务试图为《海贼王》中出现的各个实体，包括人物、地点、组织等，构建一个知识图谱，帮助我们更好的理解这部作品。
 
-
-
-### 2. 项目内容
+## 2. 项目内容
 
 本项目内容包括数据采集、知识存储、知识抽取、知识计算、知识应用五大部分
 
@@ -66,7 +67,7 @@
 
 3. 知识抽取
 
-   基于之间构建的关系抽取数据集，利用**deepke**中提供的工具进行关系抽取实践，测试了包括PCNN、GCN、BERT等模型在我们构建数据集上的效果
+   基于之前构建的关系抽取数据集，利用**deepke**中提供的工具进行关系抽取实践，测试了包括PCNN、GCN、BERT等模型在我们构建数据集上的效果
 
 4. 知识计算
 
@@ -78,19 +79,15 @@
    * 智能问答：基于**REfO**实现一个对于《海贼王》中人物的知识库问答系统(KBQA)。
    * 可视化图片：通过D3对实体关系图片进行可视化，并整合了人物知识图谱中的信息，进行展示。
 
+## 3. 数据采集
 
-
-### 3. 数据采集
-
-#### 3.1. 数据来源
+### 3.1. 数据来源
 
 本次项目中所使用的数据主要来源为两个：一个是从别的知识图谱中获取已经存在的知识信息，另一个是从相关网页中爬取解析半结构化的自然语言文本信息
 
+### 3.2. 人物知识图谱构建
 
-
-#### 3.2. 人物知识图谱构建
-
-##### 3.2.1. 抽取通用知识图谱中已有的目标域知识
+#### 3.2.1. 抽取通用知识图谱中已有的目标域知识
 
 知识图谱技术近些年来快速发展，一些公司机构已经构建了许多通用知识图谱，我们可以从中抽取出我们目标领域内相关的实体知识信息，作为我们知识图谱的冷启动数据。
 
@@ -102,8 +99,6 @@ CN-DBpedia[^3]是由复旦大学知识工场[^4]实验室研发并维护的大�
 2. 获取实体列表
 3. 筛选实体列表
 4. 获取图谱中对应实体的三元组知识
-
-
 
 **构建《海贼王》实体词汇库**
 
@@ -117,8 +112,6 @@ python cndbpedia/parse_raw_moegirl_onepiece_entries.py
 
 输出的结果保存在 `cndbpedia/data/processed_moegirl_onepiece_entries.txt` 中，一共提取了**509个词条名**
 
-
-
 **获取实体列表**
 
 我们利用知识工厂提供的API[^5]，将词条名作为输入实体指称项名称(mention name)，获取返回对应实体(entity)的列表。
@@ -129,7 +122,7 @@ python cndbpedia/get_onepiece_cndbpedia_entities.py
 
 总共获取了**1014个**不同的实体名，并输出了两个文件，输出的结果保存在 `cndbpedia/data` 文件夹中。
 
-* `cndbpedia_onepiece_entities_list.txt`：保存了所有识别出的CN-DBpedia中的实体名，例如
+* `cndbpedia_onepiece_entities_list.txt`：保存了所有识别出的`CN-DBpedia`中的实体名，例如
 
   ```
   爱德华·纽盖特（《航海王燃烧意志》游戏角色）
@@ -139,7 +132,7 @@ python cndbpedia/get_onepiece_cndbpedia_entities.py
   爱莎（艾尔之光游戏人物）
   ```
 
-* `moelgirl_cndbpedia_entities_mapping.json` ：保存着从moegirl的的条目作为实体指称项名称，在api上查找到的对应的实体列表，例如
+* `moelgirl_cndbpedia_entities_mapping.json` ：保存着从`moegirl`的的条目作为实体指称项名称，在`api`上查找到的对应的实体列表，例如
 
   ```
   "夏奇": [
@@ -162,11 +155,9 @@ python cndbpedia/get_onepiece_cndbpedia_entities.py
   ],
   ```
 
-
-
 **筛选实体列表**
 
-由于自然语言和现实世界的多义性，往往一个mention name可能对应着知识图谱中的多个不同实体。就拿 `布鲁克` 这个名字来说，在api返回的实体列表中，就有好多不同的实体
+由于自然语言和现实世界的多义性，往往一个`mention name`可能对应着知识图谱中的多个不同实体。就拿 `布鲁克` 这个名字来说，在`api`返回的实体列表中，就有好多不同的实体
 
 ```
 布鲁克
@@ -190,11 +181,9 @@ python cndbpedia/filter_moelgirl_cndbpedia_entities_mapping_file.py
 
 **筛选结果：**在509个词条中
 
-* 有162个词条在CN-DBpedia没有对应的实体名，这些词条被保存在 `moelgirl_cndbpedia_api_no_results_mention_name_list.txt`；
+* 有162个词条在`CN-DBpedia`没有对应的实体名，这些词条被保存在 `moelgirl_cndbpedia_api_no_results_mention_name_list.txt`；
 * 有11个词条虽然有实体名，但所有对应实体名中都没有包含上面提到的关键词，这些词条被保存在 `filter_out_entities_mapping.json`
 * 剩余336个词条中，都有对应符合条件的实体名，一共有357个。这些词条被保存在 `query_avpair_entities_list.txt`，此外 `query_avpair_entities_mapping.json` 中保存着这些合法词条名和实体名对应的字典。
-
-
 
 **获取图谱中对应实体的三元组知识**
 
@@ -206,7 +195,7 @@ python cndbpedia/get_onepiece_cndbpedia_avpair.py
 
 输出结果保存在 `cndbpedia/data` 文件夹中
 
-* `query_avpair_cndbpedia_onepiece_results.json`：保存着每个实体对应的三元组知识的字典，采用两级索引结构，第一级索引是mention name，第二级索引是实体名字，示例如下
+* `query_avpair_cndbpedia_onepiece_results.json`：保存着每个实体对应的三元组知识的字典，采用两级索引结构，第一级索引是`mention name`，第二级索引是实体名字，示例如下
 
   ```json
   "砂糖": {
@@ -228,9 +217,7 @@ python cndbpedia/get_onepiece_cndbpedia_avpair.py
 
 * `query_avpair_keys_list_file.txt`：保存在所有属性名称的列表
 
-
-
-##### 3.2.2. 抽取网页中半结构化的知识
+#### 3.2.2. 抽取网页中半结构化的知识
 
 生命卡(vivre card)[^7]是海贼王官方整理发布的角色资料图鉴，包含着丰富的角色信息。国内的粉丝爱好者也将其翻译成了中文版本，并发布在了网页上[^8]。这部分就是希望抽取Talkop论坛中相关网页中存在的半结构化信息，构建对应人物的知识图谱。
 
@@ -251,11 +238,11 @@ python cndbpedia/get_onepiece_cndbpedia_avpair.py
 
    输出的文件保存在 `talkop/data/processed_manual_talkop_vivre_card` 文件夹中，每个网页对应着三个输出文件
 
-   * `xxx-predicate_key_list.txt`：所有解析得到的predicate
+   * `xxx-predicate_key_list.txt`：所有解析得到的`predicate`
    * `xxx-entities_id_name_list.txt`：所有解析得到的id和实体名
-   * `xxx-entities_avpair.json`：抽取到所有实体的属性知识，以json的格式保存
+   * `xxx-entities_avpair.json`：抽取到所有实体的属性知识，以`json`的格式保存
 
-4. 人工校验：例如：查看是否抽取到了所有的实体、通过查看抽取的predicate结果来调整模板。整个过程中是代码自动抽取和人工校验构成闭环的过程，在闭环过程中不断补充模板信息，改善抽取结果
+4. 人工校验：例如：查看是否抽取到了所有的实体、通过查看抽取的`predicate`结果来调整模板。整个过程中是代码自动抽取和人工校验构成闭环的过程，在闭环过程中不断补充模板信息，改善抽取结果
 
 在整个过程中，2、3、4是不断循环往复的过程，直至抽取的知识满足我们的需要。
 
@@ -277,17 +264,15 @@ python summary_talkop_vivre_card.py
 * `summary_predicate_set.txt`：所有predicate的汇总
 * `summary_entities_id_name_list.txt`：所有抽取得到的实体名以及对应ID的汇总
 
+### 3.3. 关系抽取数据集构建
 
-
-#### 3.3. 关系抽取数据集构建
-
-* **标注数据来源**：在前面构建的人物知识图谱中，有一项重要的属性是**历史信息**，记录着每个人物在故事中的时间线以及对应的故事。每个人的历史信息记录着其**与其他实体之间交互的信息**，我们可以利用它来构建我们垂直领域内的关系抽取数据集
+* **标注数据来源**：在前面构建的人物知识图谱中，有一项重要的属性是**历史信息**，记录着每个人物在故事中的时间线以及对应的故事。每个人的历史信息记录着其与**其他实体之间交互的信息**，我们可以利用它来构建我们垂直领域内的**关系抽取数据集**
 
 * **标注工具**：精灵标注助手[^8]
 
-* **构建方法**：自底向上构建，在构建过程中逐步构建整个图谱的schema
+* **构建方法**：自底向上构建，在构建过程中逐步构建整个图谱的`schema`
 
-* **数据标注格式：**精灵标注助手提供导出json格式，其具体形式如下所示，其中 `T` 和 `E` 分别表示标注出的实体信息和关系信息
+* **数据标注格式：**精灵标注助手提供导出`json`格式，其具体形式如下所示，其中 `T` 和 `E` 分别表示标注出的实体信息和关系信息
 
   ```shell
   {
@@ -324,13 +309,11 @@ python summary_talkop_vivre_card.py
 
 * **数据存储位置：** 被标注的原始数据被保存在 `deepke-master/data/vivrecard/rawfuseki_vivrecard_sentence_item.txt`原始标注结果被保存在 `deepke-master/data/vivrecard/annot/outputs/fuseki_vivrecard_sentence_item.json`。
 
-  为了方便后续关系抽取模型处理，我们将标注数据转为符合deepke项目格式的数据
+  为了方便后续关系抽取模型处理，我们将标注数据转为符合`deepke`项目格式的数据
 
   并保存在 `deepke-master/data/vivrecard/origin`，具体详情参见[知识抽取](#知识抽取)部分
 
-
-
-##### 3.1. 数据集统计信息
+#### 3.3.1. 数据集统计信息
 
 * **实体类型：**一共**7种**实体：'事件', '组织', '船只', '地点', '职务', '恶魔果实', '人'
 
@@ -367,9 +350,7 @@ python summary_talkop_vivre_card.py
 
 * 训练正样本个数：616个
 
-
-
-#### 3.4. 实体关系知识图谱构建
+### 3.4. 实体关系知识图谱构建
 
 在进行关系抽取数据集的标注过程中，我们将标注的实体和关系单独导出，构建《海贼王》实体关系数据集
 
@@ -382,21 +363,19 @@ python utils/convert_vivrecard2deepke.py
 
 输出的实体关系数据保存在 `deepke-master/data/vivrecard/summary/vizdata_vivrecard_relation.json`，可用于后续进行知识图谱可视化，具体参见[知识图谱可视化](#知识图谱可视化)部分
 
+## 4. 知识存储
 
+### 4.1. 基于RDF 三元组数据库：Apache Jena
 
-### 4. 知识存储
+#### 4.1.1 Jena 简介[^10]
 
-#### 4.1. 基于RDF 三元组数据库：Apache Jena 
+Jena[^9]是 Apache 顶级项目，其前身为惠普实验室开发的 Jena 工具包。Jena 是语义 Web 领域主要的开源框架和 RDF 三元组库，较好地遵循了 W3C 标准,其功能包括：RDF 数据管理、RDFS 和 OWL 本体管理、SPARQL 查询处理等。Jena 具备一套原生存储引擎，可对 RDF 三元组进行基于磁盘或内存的存储管理。同时，具有一套基于规则的推理引擎，用以执行 RDFS 和 OWL 本体推理任务.
 
-#####4.1.1 Jena 简介[^10] 
-
-Jena[^9]是 Apache 顶级项目,其前身为惠普实验室开发的 Jena 工具包.Jena 是语义 Web 领域主要的开源框 架和 RDF 三元组库,较好地遵循了 W3C 标准,其功能包括:RDF 数据管理、RDFS 和 OWL 本体管理、SPARQL 查询处理等.Jena 具备一套原生存储引擎,可对 RDF 三元组进行基于磁盘或内存的存储管理.同时,具有一套基 于规则的推理引擎,用以执行 RDFS 和 OWL 本体推理任务.
-
-#####4.1.2. 项目实践
+#### 4.1.2. 项目实践
 
 **avpair to triple**
 
-以vivrecard人物属性知识图谱为例，首先我们将之前获得的数据，转换为Jena支持解析的 `N-Triple` 三元组格式，命名空间前缀为  `<http://kg.course/talkop-vivre-card/>` 
+以`vivrecard`人物属性知识图谱为例，首先我们将之前获得的数据，转换为Jena支持解析的 `N-Triple` 三元组格式，命名空间前缀为  `<http://kg.course/talkop-vivre-card/>` 
 
 ```shell
 cd talkop
@@ -407,7 +386,7 @@ python avpair2ntriples_talkop_vivre_card.py
 
 **NOTE：**
 
-1. 在项目构建过程中，我们也将从CN-DBpedia获取的知识转换为 `N-Triple` 格式，命名空间前缀为  `<http://kg.course/onepiece/>` 
+1. 在项目构建过程中，我们也将从`CN-DBpedia`获取的知识转换为 `N-Triple` 格式，命名空间前缀为  `<http://kg.course/onepiece/>` 
 
    ```shell
    python cndbpedia/avpair2ntriples_onepiece_cndbpedia.py
@@ -419,11 +398,11 @@ python avpair2ntriples_talkop_vivre_card.py
 
 按照陈华均老师提供文件：https://github.com/zjunlp/kg-course/blob/master/tutorials/Tutorial-Jena.pdf 
 
-进一步配置fuseki，上传数据集就可以查询了
+进一步配置`fuseki`，上传数据集就可以查询了
 
-##### 4.1.3 SPARQL查询示例
+#### 4.1.3 SPARQL查询示例
 
-SPARQL[^11] 是 W3C 制定的 RDF 知识图谱标准查询语言.SPARQL 从语法上借鉴了 SQL.SPARQL 查询的 基本单元是三元组模式(triple pattern),多个三元组模式可构成基本图模式(basic graph pattern).SPARQL 支持多 种运算符,将基本图模式扩展为复杂图模式(complex graph pattern).SPARQL 1.1 版本引入了属性路径(property path)机制以支持 RDF 图上的导航式查询.下面使用图 2 所示的电影知识图谱 RDF 图,通过示例介绍 SPARQL 语言的基本功能. [^10]
+SPARQL[^11] 是 W3C 制定的 RDF 知识图谱标准查询语言。SPARQL 从语法上借鉴了 SQL。SPARQL 查询的基本单元是三元组模式(triple pattern)，多个三元组模式可构成基本图模式(basic graph pattern)。SPARQL 支持多种运算符，将基本图模式扩展为复杂图模式(complex graph pattern)。SPARQL 1.1 版本引入了属性路径(property path)机制以支持 RDF 图上的导航式查询。下面使用图 2 所示的电影知识图谱 RDF 图，通过示例介绍 SPARQL 语言的基本功能. [^10]
 
 下面给出了使用SPARQL在我们构建的数据库上进行查询的示例
 
@@ -473,15 +452,13 @@ SPARQL[^11] 是 W3C 制定的 RDF 知识图谱标准查询语言.SPARQL 从语�
     ":0028" , "【克比/Koby】" , "5月13日" ,
    ```
 
+### 4.2. 基于原生图数据库：Neo4j
 
+#### 4.2.1. Neo4j简介
 
-#### 4.2. 基于原生图数据库：Neo4j
+Neo4j[^12]是由 Neo 技术公司开发的图数据库。可以说,Neo4j 是目前流行程度最高的图数据库产品。Neo4j 基 于属性图模型，其存储管理层为属性图的节点、节点属性、边、边属性等元素设计了专门的存储方案。这使得 Neo4j 在存储层对于图数据的存取效率优于关系数据库。 
 
-##### 4.2.1. Neo4j简介
-
-Neo4j[^12]是由 Neo 技术公司开发的图数据库.可以说,Neo4j 是目前流行程度最高的图数据库产品.Neo4j 基 于属性图模型,其存储管理层为属性图的节点、节点属性、边、边属性等元素设计了专门的存储方案.这使得 Neo4j 在存储层对于图数据的存取效率优于关系数据库. 
-
-#####4.2.2. 项目实践
+#### 4.2.2. 项目实践
 
 **relation to triple**
 
@@ -507,7 +484,7 @@ neo4j.bat console
 
 默认的用户名和密码都是 ` neo4j `
 
-##### 4.2.3. Cypher查询示例
+#### 4.2.3. Cypher查询示例
 
 Cypher 最初是图数据库 Neo4j 中实现的属性图数据查询语言，是一种声明式的语言，用户只需要声明查什么，而不需要关系怎么查。
 
@@ -580,19 +557,15 @@ Cypher 最初是图数据库 Neo4j 中实现的属性图数据查询语言，是
 
    <img src=".\images\graph (3).png" style="zoom: 50%;" />
 
+## 5. 知识抽取
 
+`DeepKE`[^13]基于 `Pytorch` 的深度学习中文关系抽取处理套件。在这部分中我们利用之前构建的关系抽取数据集和`deepke`，进行中文关系抽取实践
 
-### 5. 知识抽取
-
-DeepKE[^13]基于 Pytorch 的深度学习中文关系抽取处理套件。在这部分中我们利用之前构建的关系抽取数据集和deepke，进行中文关系抽取实践
-
-
-
-#### 5.1. 数据转换&标注统计
+### 5.1. 数据转换&标注统计
 
 在这部分，我们需要完成以下三部分内容：
 
-1. 将我们的标注结果转换为deepke所接收的格式
+1. 将我们的标注结果转换为`deepke`所接收的格式
 2. 为了保证关系分布均匀，将数据随机打乱
 3. 完成训练集、测试集、验证集的划分，目前按 **7:2:1进行划分**
 
@@ -628,11 +601,9 @@ python utils/convert_vivrecard2deepke.py
     └── unannot_relation_sent.txt         # [未被]标记上关系的句子
 ```
 
+### 5.2. 训练
 
-
-#### 5.2. 训练
-
-在训练过程中我们尝试使用了deepke所提供的PCNN, rnn, gcn, capsule, transformer, bert 这些模型，epoch 设置为 50，`num_relations` 根据我们数据集的实际情况修改为19，需要注意的是基于BERT的语言模型进行训练时，需要先在相关网页[^14]下载好预训练模型
+在训练过程中我们尝试使用了`deepke`所提供的`PCNN`, `rnn`, `gcn`, `capsule`, `transformer`, `bert` 这些模型，epoch 设置为 50，`num_relations` 根据我们数据集的实际情况修改为19，需要注意的是基于`BERT`的语言模型进行训练时，需要先在相关网页[^14]下载好预训练模型
 
 新的数据集有**22种**关系(包括None)，需要通过 `num_relations` 来更改
 
@@ -660,30 +631,28 @@ python main.py show_plot=False data_path=data/vivrecard/origin out_path=data/viv
 python main.py show_plot=False data_path=data/vivrecard/origin out_path=data/vivrecard/out num_relations=22 epoch=50 model=lm lm_file=/home/zenghao/ZJU_study/Knowledge_Graph/deepke/pretrained/ gpu_id=1 num_hidden_layers=3
 ```
 
-#### 5.3. 训练结果
+### 5.3. 训练结果
 
 |       | PCNN  | RNN   | GCN   | CAPSULE | TRANSFORMER | LM(BERT) LAYER=1 | LM(BERT) LAYER=2 | LM(BERT) LAYER=3 |
 | ----- | ----- | ----- | ----- | ------- | ----------- | ---------------- | ---------------- | ---------------- |
 | VALID | 80.11 | 83.87 | 55.91 | 75.27   | 82.26       | 89.79            | **90.86**        | 89.78            |
 | TEST  | 86.18 | 85.64 | 63.15 | 82.66   | 86.18       | 91.87            | 91.33            | **92.14**        |
 
-可以到基于bert的语言模型效果最好，明显由于其他模型。GCN的效果最差。这也说明在小规模数据上利用预训练的语言模型还是能够抽取到比较好的特征的。
+可以到基于`bert`的语言模型效果最好，明显由于其他模型。`GCN`的效果最差。这也说明在小规模数据上利用预训练的语言模型还是能够抽取到比较好的特征的。
 
 但是在我们后面对于实际数据的预测结果发现，语言模型的泛化效果似乎不如PCNN模型的好
 
 我们猜测是由于我们的数据存在长尾分布问题，模型可能趋向于预测某些特定关系来作弊，已达到准确率提高的效果
 
+## 6. 知识计算
 
-
-###6. 知识计算
-
-#### 6.1. 图计算
+### 6.1. 图计算
 
 知识图谱的一个很重要的特征就是其的图结构，不同实体之间的结构本身就内含着许多的隐式的信息，可以被进一步的挖掘利用。
 
 在这部分中，我们参考他人在类似领域的实践[^15][^16]，利用Neo4j提供的图算法，对我们构建的实体关系知识图谱，用图算法进行一定的计算分析，包括计算最短路径、关键结点、结点中心度、社区发现等。
 
-##### 6.1.1. 人物网络分析
+#### 6.1.1. 人物网络分析
 
 **人物数量**
 
@@ -735,7 +704,7 @@ ORDER BY len DESC LIMIT 4
 
 **最短路径**
 
-使用Cypher 的shortestPath函数找到图中任意两个角色之间的最短路径。让我们找出**克洛克达尔**和**加尔帝诺（Mr.3）**之间的最短路径：
+使用`Cypher` 的`shortestPath`函数找到图中任意两个角色之间的最短路径。让我们找出**克洛克达尔**和**加尔帝诺（Mr.3）**之间的最短路径：
 
 ```cypher
 MATCH p=shortestPath(
@@ -765,7 +734,7 @@ RETURN p
 
 **所有最短路径**
 
-联结**斯摩格**和**一本松**之间的最短路径可能还有其它路径，我们可以使用Cypher的allShortestPaths函数来查找：
+联结**斯摩格**和**一本松**之间的最短路径可能还有其它路径，我们可以使用`Cypher`的`allShortestPaths`函数来查找：
 
 ```cypher
 MATCH (n1:`ns0__人`), (n2:`ns0__人`) WHERE n1.uri CONTAINS '克洛克达尔' and n2.uri CONTAINS '加尔帝诺' and id(n2) > id(n1)
@@ -773,7 +742,7 @@ MATCH p=allShortestPaths((n1)-[*]-(n2))
 RETURN p
 ```
 
-##### 6.1.2. 关键节点
+#### 6.1.2. 关键节点
 
 在网络中，如果一个节点位于其它两个节点所有的最短路径上，即称为关键节点。下面我们找出网络中所有的关键节点：
 
@@ -800,7 +769,7 @@ MATCH p=shortestPath((n1)-[*]-(n2))
 RETURN p
 ```
 
-##### 6.1.3. 节点中心度
+#### 6.1.3. 节点中心度
 
 节点中心度给出网络中节点的重要性的相对度量。有许多不同的方式来度量中心度，每种方式都代表不同类型的“重要性”。
 
@@ -888,7 +857,7 @@ LIMIT 20;
 | "http://kg.course/talkop-vivre-card/deepke/人/范德·戴肯"  | 1.0        |
 | "http://kg.course/talkop-vivre-card/deepke/人/杰斯"       | 1.0        |
 
-##### 6.1.4. 社区发现
+#### 6.1.4. 社区发现
 
 ```cypher
 CALL algo.beta.louvain.stream(null, null, {
@@ -913,7 +882,7 @@ ORDER BY community ASC
 
 可以看到，基本把瓦波尔那一系列的community给检测出来了，包括在磁鼓岛和黑暗磁鼓王国
 
-##### 6.1.5. PageRank
+#### 6.1.5. PageRank
 
 ```cypher
 CALL algo.pageRank.stream('ns0__人', null, {iterations:20, dampingFactor:0.85})
@@ -928,30 +897,22 @@ ORDER BY score DESC
 | "http://kg.course/talkop-vivre-card/deepke/人/山治" | 1.4952359730610623 |
 | "http://kg.course/talkop-vivre-card/deepke/人/拉布" | 1.1878799288533628 |
 
-
-
-#### 6.2. 知识推理
+### 6.2. 知识推理
 
 TODO
 
+## 7. 知识应用
 
+### 7.1. 智能问答
 
-### 7. 知识应用
+在这部分中我们参考前人的工作[^17][^18]，基于`REfO`[^19]实现了一个KBQA系统，主要流程为：解析输入的自然语言问句生成 `SPARQL` 查询，进一步请求后台基于 TDB 知识库的 `Apache Jena Fuseki` 服务, 得到结果。代码和数据存放在 `vivirecard-KB_query` 目录下
 
-#### 7.1. 智能问答
-
-在这部分中我们参考前人的工作[^17][^18]，基于REfO[^19]实现了一个KBQA系统，主要流程为：解析输入的自然语言问句生成 SPARQL 查询，进一步请求后台基于 TDB 知识库的 Apache Jena Fuseki 服务, 得到结果。代码和数据存放在 `vivirecard-KB_query` 目录下
-
-
-
-##### 7.1.1. 支持的问题类型
+#### 7.1.1. 支持的问题类型
 
 1. 对于生日/英文名/血型/星座/霸气/身高的查询
 2. 谁出生在哪里/出生在某个地方的有谁
 
-
-
-##### 7.1.2. 查询示例
+#### 7.1.2. 查询示例
 
 运行 `python query_main.py` 就可以开始进行QA过程
 
@@ -990,17 +951,15 @@ python query_main.py
 
    > I can't understand. :(
 
-
-
-#### 7.2. 知识图谱可视化
+### 7.2. 知识图谱可视化
 
 在这部分中，我们参考别人的工作[^20]，利用D3[^21]对之前构建的实体关系知识图谱提供可视化交互功能，包括结点连接关系可视化、查询相关结点信息。同时在这部分也整合了之间构建的人物属性知识图谱，提供了信息框的展示过程，相关的数据和代码存放在 `visualization` 目录下。整个可视化页面的交互过程如下面的[gif图](https://github.com/mrbulb/ONEPIECE-KG/blob/master/docs/images/soogif-5m.gif)所示：
 
-<img src="D:\研究生学习\知识图谱\project\2019-11-27-KG-demo-for-movie-master-学习\docs\images\soogif-5m.gif" style="zoom:150%;" />
+![](C:\Users\yankh\Desktop\海贼王KG\ONEPIECE-KG\docs\images\soogif-5m.gif)
 
 可视化网页存放于 `visualization/html/index.html`，可以通过 **Microsoft Edge** 浏览器直接打开
 
-如果需要在其他浏览器中打开，可能会加载不出来可视化结果。这是因为跨域请求在大多数浏览器中是禁止的，请求不到json数据。因此需要用 WAMP/LAMP/MAMP 配置一个Web网络环境。
+如果需要在其他浏览器中打开，可能会加载不出来可视化结果。这是因为跨域请求在大多数浏览器中是禁止的，请求不到`json`数据。因此需要用 WAMP/LAMP/MAMP 配置一个Web网络环境。
 
 打开后可视化界面如下所示，不同的颜色代表不同类型的实体，具有关系的实体会用白色的细线连接，可以明显的看到有些实体与其他实体存在大量的连接
 
@@ -1016,11 +975,7 @@ python query_main.py
 
 此外左侧还提供了搜索框的功能，可以方便我们查找结点信息
 
-
-
-
-
-### 参考资料
+## 参考资料
 
 [^1]: http://bbs.talkop.com/forum.php?mod=viewthread&tid=119685
 [^2]:https://games.qq.com/a/20150615/057918.htm
@@ -1045,6 +1000,3 @@ python query_main.py
 [^20]:https://github.com/Honlan/starwar-visualization
 [^21]:https://d3js.org/
 [^22]:
-
-
-
